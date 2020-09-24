@@ -1,26 +1,153 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {TodoInput} from "./components/TodoInput";
+import {TodoList} from "./components/TodoList";
+import {connect} from "react-redux";
+import {addTodo} from "./store/actions";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App (props){
+        return (
+            <div>
+                <h1>TodoList</h1>
+                <TodoInput add={props.addTodo} />
+                <TodoList items={props.items}/>
+            </div>
+        )
+
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        items: state
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addTodo: (text) => {
+            dispatch(addTodo(text))
+        }
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import {connect} from "react-redux";
+// import {addTodo, deleteTodo} from "./store/actions";
+//
+//
+// function App(props) {
+// //     const[inputText, changeInputText] = useState('');
+// //   return (
+// //     <div className="App">
+// //       <header className="App-header">
+// //         <h2>TodoList</h2>
+// //           <input type="text" value={inputText}
+// //             onChange={(e) => changeInputText(e.target.value)}
+// //           />
+// //
+// //           <button
+// //               onClick={() =>
+// //               {props.addTodo(inputText);
+// //                   changeInputText('')}}>AddTodo</button>
+// //           <div>
+// //               {props.todos}
+// //           </div>
+// //
+// //       </header>
+// //     </div>
+// //   );
+// // }
+// // const mapStateToProps = state => {
+// //     return {
+// //         todos: state
+// //     }
+// // };
+// // const mapDispatchToProps = dispatch => {
+// //     return {
+// //         addTodo: () => {
+// //             dispatch(addTodo())
+// //         },
+// //         deleteTodo: () => {
+// //             dispatch(deleteTodo())
+// //         }
+// //     }
+// // };
+// //
+// // export default connect(mapStateToProps, mapDispatchToProps)(App);
